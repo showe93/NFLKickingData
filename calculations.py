@@ -1,5 +1,5 @@
 """This file will perform all calculations"""
-from FGPercentageStats import FieldGoalAvgTotal, FieldGoalSDTotal
+from FGPercentageStats import *
 def calculations(data):
     FieldGoalPercentage_Total(data)
 
@@ -8,4 +8,5 @@ def calculations(data):
 def FieldGoalPercentage_Total(data):
     FGAvg = FieldGoalAvgTotal(data)
     FGSD = FieldGoalSDTotal(data, FGAvg)
-    print(FGSD)
+    Good_kickers, percentage = SD_Spread(data, FGAvg, FGSD)
+    print(Good_kickers, percentage)
