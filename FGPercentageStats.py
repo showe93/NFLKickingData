@@ -1,7 +1,6 @@
 """This file will find the average of all Field Goal Percentages, then will construct a graph using the standard
 deviation and mean of the data"""
 import math
-
 """This function will find the average Field Goal Percentage amongst all kickers in the NFL"""
 
 

@@ -1,5 +1,6 @@
 """This file will perform all calculations"""
 from FGPercentageStats import *
+
 def calculations(data):
     FieldGoalPercentage_Total(data)
 
