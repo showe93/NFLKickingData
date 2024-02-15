@@ -1,5 +1,5 @@
 """This file will initially confirm that our data is read correctly and will be used for future reference"""
-import sqlite3
+
 
 """This function will check that the player names can be returned in a loop one at a time and in order"""
 
@@ -14,5 +14,8 @@ order"""
 
 
 def fgm_total(data):
+    totalyards = 0
     for row in data:
         print(row[13])
+        totalyards = totalyards + int(row[13])
+    print(totalyards)
