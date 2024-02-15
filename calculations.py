@@ -9,5 +9,8 @@ def calculations(data):
 def FieldGoalPercentage_Total(data):
     FGAvg = FieldGoalAvgTotal(data)
     FGSD = FieldGoalSDTotal(data, FGAvg)
-    Good_kickers, percentage = SD_Spread(data, FGAvg, FGSD)
-    print(Good_kickers, percentage)
+    Good_kickers, good_percentage = SD_Spread(data, FGAvg, FGSD)
+    Elite_Kickers, elite_percentage = BeatTheSpread(data, FGAvg, FGSD)
+    Poor_kickers = len(data) - (Good_kickers + Elite_Kickers)
+    poor_percentage = f'{Poor_kickers/len(data): .2%}'
+    print(poor_percentage, elite_percentage, good_percentage)

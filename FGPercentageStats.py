@@ -45,3 +45,15 @@ def SD_Spread(data, FGAvg, StandardDeviation):
             KickerCount += 1
     percentage = f"{KickerCount / PopulationSize: .2%}"
     return KickerCount, percentage
+
+def BeatTheSpread(data, FGAvg, StandardDeviation):
+    PopulationSize = 0
+    KickerCount = 0
+    Top_bar = FGAvg + StandardDeviation
+    for row in data:
+        PopulationSize += 1
+        test_value = row[14]
+        if float(test_value) >= Top_bar:
+            KickerCount += 1
+    percentage = f"{KickerCount / PopulationSize: .2%}"
+    return KickerCount, percentage
