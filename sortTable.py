@@ -1,4 +1,4 @@
-"""This file will initially confirm that our data is read correctly and will be used for future reference"""
+þÿ"""This file will initially confirm that our data is read correctly and will be used for future reference"""
 
 """This function will check that the player names can be returned in a loop one at a time and in order"""
 

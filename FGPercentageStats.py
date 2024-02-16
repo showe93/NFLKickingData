@@ -57,3 +57,25 @@ def BeatTheSpread(data, FGAvg, StandardDeviation):
             KickerCount += 1
     percentage = f"{KickerCount / PopulationSize: .2%}"
     return KickerCount, percentage
+
+def ByDistancePercentage(data):
+    results = []  # a list of 5 numbers. { '0-19 yards%', '20-29 yards%','30-39 yards%', '40-49 yards%', '50+ yards'
+    i = 0
+    attemptRow = 2
+    madeRow = 3
+    for i in range(5):
+        attempts = 0
+        makes = 0
+        for row in data:
+            attempts = int(row[attemptRow]) + attempts
+            makes = int(row[madeRow]) + makes
+        percentage = f'{makes / attempts: .2%}'
+        madeRow = madeRow + 2
+        attemptRow = attemptRow + 2
+        results.append(percentage)
+    yards19 = results[0]
+    yards29 = results[1]
+    yards39 = results[2]
+    yards49 = results[3]
+    yards50 = results[4]
+    return yards19, yards29, yards39, yards49, yards50
