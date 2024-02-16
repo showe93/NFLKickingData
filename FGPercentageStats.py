@@ -46,6 +46,8 @@ def SD_Spread(data, FGAvg, StandardDeviation):
     percentage = f"{KickerCount / PopulationSize: .2%}"
     return KickerCount, percentage
 
+
+"""This function determines which kickers were greater then +1 Standard Deviation and returns the count and percentage"""
 def BeatTheSpread(data, FGAvg, StandardDeviation):
     PopulationSize = 0
     KickerCount = 0
@@ -58,6 +60,8 @@ def BeatTheSpread(data, FGAvg, StandardDeviation):
     percentage = f"{KickerCount / PopulationSize: .2%}"
     return KickerCount, percentage
 
+
+"This function determines field goal percentage for each specific distance using all of the data"
 def ByDistancePercentage(data):
     results = []  # a list of 5 numbers. { '0-19 yards%', '20-29 yards%','30-39 yards%', '40-49 yards%', '50+ yards'
     i = 0
