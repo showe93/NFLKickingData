@@ -88,3 +88,10 @@ def ByDistancePercentage(data):
     yards49 = results[3]
     yards50 = results[4]
     return yards19, yards29, yards39, yards49, yards50
+
+def EliteKickerNames(data, Top_bar):
+    EliteKickers = []
+    for row in data:
+        if float(row[14]) > Top_bar:
+            EliteKickers.append(row[0])
+    return EliteKickers
