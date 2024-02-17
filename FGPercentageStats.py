@@ -54,14 +54,16 @@ percentage """
 
 def BeatTheSpread(data, Top_bar):
     PopulationSize = 0
+    EliteKickersList = []
     KickerCount = 0
     for row in data:
         PopulationSize += 1
         test_value = row[14]
         if float(test_value) >= Top_bar:
             KickerCount += 1
+            EliteKickersList.append(row[0])
     percentage = KickerCount / PopulationSize
-    return KickerCount, percentage
+    return KickerCount, percentage, EliteKickersList
 
 
 "This function determines field goal percentage for each specific distance using all of the data"
@@ -89,9 +91,3 @@ def ByDistancePercentage(data):
     yards50 = results[4]
     return yards19, yards29, yards39, yards49, yards50
 
-def EliteKickerNames(data, Top_bar):
-    EliteKickers = []
-    for row in data:
-        if float(row[14]) > Top_bar:
-            EliteKickers.append(row[0])
-    return EliteKickers
