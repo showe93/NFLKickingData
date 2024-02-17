@@ -16,10 +16,15 @@ def kickerSDgraph(data):
     plt.title("Kickers Field Goal Percentages Compared to -1 and 1 Standard Deviation")
     plt.show()
 
+
+"""This function graphs the percentage of kickers that fall within one standard deviation, fall below one standard
+deviation, and above one standard deviation."""
+
+
 def kickersSDgraphPercentage(data):
     SDcalculations = list(data.keys())
     percentages = list(data.values())
-    fig = plt.figure(figsize=(15,5))
+    fig = plt.figure(figsize=(15, 5))
     bar_colors = ['tab:red', 'tab:blue', 'tab:green']
     plt.pie(percentages, labels=SDcalculations, autopct='%1.2f%%', colors=bar_colors)
     plt.title("Percentages of Kickers in Each Category Based on SD")
