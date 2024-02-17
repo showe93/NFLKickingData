@@ -1,6 +1,7 @@
 """This file will find the average of all Field Goal Percentages, then will construct a graph using the standard
 deviation and mean of the data"""
 import math
+
 """This function will find the average Field Goal Percentage amongst all kickers in the NFL"""
 
 
@@ -15,7 +16,7 @@ def FieldGoalAvgTotal(data):
     return FGAvg
 
 
-"""This function will calculate the Poopulation Standard Deviation Based on Field Goal Percentages of all kickers in 
+"""This function will calculate the Population Standard Deviation Based on Field Goal Percentages of all kickers in 
 the NFL"""
 
 
@@ -43,25 +44,29 @@ def SD_Spread(data, FGAvg, StandardDeviation):
         test_value = row[14]
         if Bottom_bar <= float(test_value) <= Top_bar:
             KickerCount += 1
-    percentage = f"{KickerCount / PopulationSize: .2%}"
-    return KickerCount, percentage
+    percentage = KickerCount / PopulationSize
+    return KickerCount, percentage, Bottom_bar, Top_bar
 
 
-"""This function determines which kickers were greater then +1 Standard Deviation and returns the count and percentage"""
-def BeatTheSpread(data, FGAvg, StandardDeviation):
+"""This function determines which kickers were greater then +1 Standard Deviation and returns the count and 
+percentage """
+
+
+def BeatTheSpread(data, Top_bar):
     PopulationSize = 0
     KickerCount = 0
-    Top_bar = FGAvg + StandardDeviation
     for row in data:
         PopulationSize += 1
         test_value = row[14]
         if float(test_value) >= Top_bar:
             KickerCount += 1
-    percentage = f"{KickerCount / PopulationSize: .2%}"
+    percentage = KickerCount / PopulationSize
     return KickerCount, percentage
 
 
 "This function determines field goal percentage for each specific distance using all of the data"
+
+
 def ByDistancePercentage(data):
     results = []  # a list of 5 numbers. { '0-19 yards%', '20-29 yards%','30-39 yards%', '40-49 yards%', '50+ yards'
     i = 0
