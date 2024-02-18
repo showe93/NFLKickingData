@@ -15,7 +15,7 @@ def kickerSDgraph(data):
     plt.xlabel("Kicking Categories")
     plt.ylabel("Number of Kickers")
     plt.title("Kickers Field Goal Percentages Compared to -1 and 1 Standard Deviation")
-    plt.show()
+    plt.savefig("Graphs/TotalFieldGoalSDComparison.jpg")
 
 
 """This function graphs the percentage of kickers that fall within one standard deviation, fall below one standard
@@ -29,14 +29,14 @@ def kickersSDgraphPercentage(data):
     bar_colors = ['tab:red', 'tab:blue', 'tab:green']
     plt.pie(percentages, labels=SDcalculations, autopct='%1.2f%%', colors=bar_colors)
     plt.title("Percentages of Kickers in Each Category Based on SD")
-    plt.show()
+    plt.savefig("Graphs/TotalFieldGoalPercentages.jpg")
 
 
 def kickerNameTable(data):
     column_header = data.pop(0)
     plt.figure(linewidth=2,
                tight_layout={'pad': 1},
-               figsize=(5, 6.5),
+               figsize=(5, 7),
                dpi=150
                )
     ccolors = plt.cm.Blues(np.full(len(column_header), 0.1))
@@ -48,4 +48,4 @@ def kickerNameTable(data):
     table.auto_set_font_size(False)
     table.set_fontsize(8)
     plt.box(on=None)
-    plt.show()
+    plt.savefig("Graphs/KickerNamesTotalFieldGoal.jpg", bbox_inches="tight")
