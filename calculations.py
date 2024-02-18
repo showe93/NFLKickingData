@@ -14,10 +14,11 @@ def calculations(data):
 def FieldGoalPercentage_Total(data):
     FGAvg = FieldGoalAvgTotal(data)
     FGSD = FieldGoalSDTotal(data, FGAvg)
-    Good_kickers, good_percentage, Bottom_bar, Top_bar = SD_Spread(data, FGAvg, FGSD)
+    Good_kickers, good_percentage, Bottom_bar, Top_bar, GoodKickersList = SD_Spread(data, FGAvg, FGSD)
     Elite_kickers, elite_percentage, EliteKickersList = BeatTheSpread(data, Top_bar)
-    Poor_kickers = len(data) - (Good_kickers + Elite_kickers)
-    poor_percentage = Poor_kickers / len(data)
+    Poor_kickers, poor_percentage, PoorKickersList = NotBeatTheSpread(data, Bottom_bar)
+    tableData = KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList)
+    kickerNameTable(tableData)
     NumbersData = {f'Field Goal Percentages < {Bottom_bar}% (-1SD)': Poor_kickers,
                    f'Field Goal Percentages between {Bottom_bar}% (-1SD) and {Top_bar}% (1SD)': Good_kickers,
                    f'Field Goal Percentages > {Top_bar}% (1SD)': Elite_kickers}

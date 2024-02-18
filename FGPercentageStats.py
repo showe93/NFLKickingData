@@ -36,6 +36,7 @@ def FieldGoalSDTotal(data, FGAvg):
 
 def SD_Spread(data, FGAvg, StandardDeviation):
     PopulationSize = 0
+    GoodKickersList = []
     KickerCount = 0
     Bottom_bar = FGAvg - StandardDeviation
     Top_bar = FGAvg + StandardDeviation
@@ -44,12 +45,14 @@ def SD_Spread(data, FGAvg, StandardDeviation):
         test_value = row[14]
         if Bottom_bar <= float(test_value) <= Top_bar:
             KickerCount += 1
+            GoodKickersList.append(row[0])
     percentage = KickerCount / PopulationSize
-    return KickerCount, percentage, Bottom_bar, Top_bar
+    return KickerCount, percentage, Bottom_bar, Top_bar, GoodKickersList
 
 
-"""This function determines which kickers were greater then +1 Standard Deviation and returns the count and 
-percentage """
+"""These functions determine which kickers were greater then +1 Standard Deviation and returns the count, 
+percentage, and list of names. Then determine which kickers were less than -1 Standard Deviation and returns
+ the count, percentage and list of names"""
 
 
 def BeatTheSpread(data, Top_bar):
@@ -64,6 +67,58 @@ def BeatTheSpread(data, Top_bar):
             EliteKickersList.append(row[0])
     percentage = KickerCount / PopulationSize
     return KickerCount, percentage, EliteKickersList
+
+
+def NotBeatTheSpread(data, Bottom_bar):
+    PopulationSize = 0
+    PoorKickersList = []
+    KickerCount = 0
+    for row in data:
+        PopulationSize += 1
+        test_value = row[14]
+        if float(test_value) <= Bottom_bar:
+            KickerCount += 1
+            PoorKickersList.append(row[0])
+    percentage = KickerCount / PopulationSize
+    return KickerCount, percentage, PoorKickersList
+
+
+"""This function creates a list of list with all the names for each kickers in each category to be used in a table"""
+
+
+def KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList):
+    kickerList = [PoorKickersList, GoodKickersList, EliteKickersList]
+    table = [
+        ['Below -1SD', 'Between -1SD and 1SD', 'Above 1SD']
+    ]
+    loops = 0
+    row = 0
+    if len(EliteKickersList) > len(GoodKickersList) and len(EliteKickersList) > len(PoorKickersList):
+        loops = len(EliteKickersList)
+    elif len(GoodKickersList) > len(PoorKickersList):
+        loops = len(GoodKickersList)
+    else:
+        loops = len(PoorKickersList)
+    for nameslist in range(loops):
+        entry = []
+        i = 0
+        try:
+            entry.append(kickerList[i][row])
+        except IndexError:
+            entry.append(" ")
+        i = 1
+        try:
+            entry.append(kickerList[i][row])
+        except IndexError:
+            entry.append(" ")
+        i = 2
+        try:
+            entry.append(kickerList[i][row])
+        except IndexError:
+            entry.append(" ")
+        table.append(entry)
+        row += 1
+    return table
 
 
 "This function determines field goal percentage for each specific distance using all of the data"
@@ -90,4 +145,3 @@ def ByDistancePercentage(data):
     yards49 = results[3]
     yards50 = results[4]
     return yards19, yards29, yards39, yards49, yards50
-
