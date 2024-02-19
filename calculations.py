@@ -4,7 +4,13 @@ from graphs import *
 
 
 def calculations(data):
+    """ First we will calculate below average,average, and above average kickers. We will use total FG percentage and
+    -1 and 1 Standard Deviation to perform this calculation."""
     FieldGoalPercentage_Total(data)
+    """Now we will use box plots to determine if any of the below or above average kickers are outliers when compared
+    to the rest of the data"""
+    #insert place holder here
+    """"This function determines averages for each of the 5 distance ranges. 0-19, 20-29, 30-39, 40-49 and 50+."""
     PercentageMadeByDistance(data)
 
 
@@ -17,15 +23,15 @@ def FieldGoalPercentage_Total(data):
     Good_kickers, good_percentage, Bottom_bar, Top_bar, GoodKickersList = SD_Spread(data, FGAvg, FGSD)
     Elite_kickers, elite_percentage, EliteKickersList = BeatTheSpread(data, Top_bar)
     Poor_kickers, poor_percentage, PoorKickersList = NotBeatTheSpread(data, Bottom_bar)
-    tableData = KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList)
+    tableData = KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList, Top_bar, Bottom_bar)
     kickerNameTable(tableData)
-    NumbersData = {f'Field Goal Percentages < {Bottom_bar}% (-1SD)': Poor_kickers,
-                   f'Field Goal Percentages between {Bottom_bar}% (-1SD) and {Top_bar}% (1SD)': Good_kickers,
-                   f'Field Goal Percentages > {Top_bar}% (1SD)': Elite_kickers}
+    NumbersData = {f'Below Average (< {Bottom_bar}% (-1SD))': Poor_kickers,
+                   f'Average ({Bottom_bar}% (-1SD) and {Top_bar}% (1SD))': Good_kickers,
+                   f'Above Average > ({Top_bar}% (1SD))': Elite_kickers}
     kickerSDgraph(NumbersData)
-    PercentageData = {f'Field Goal Percentages < {Bottom_bar}% (-1SD)': poor_percentage,
-                      f'Field Goal Percentages between {Bottom_bar}% (-1SD) and {Top_bar}% (1SD)': good_percentage,
-                      f'Field Goal Percentages > {Top_bar}% (1SD)': elite_percentage}
+    PercentageData = {f'Below Average (< {Bottom_bar}% (-1SD))': poor_percentage,
+                      f'Average ({Bottom_bar}% (-1SD) and {Top_bar}% (1SD))': good_percentage,
+                      f'Above Average (> {Top_bar}% (1SD))': elite_percentage}
     kickersSDgraphPercentage(PercentageData)
     statement = f'Across the league, NFL kickers were successful with kicking Field Goals {FGAvg}% of the time. The ' \
                 f'Average NFL kicker was successful between {Bottom_bar}% and {Top_bar}% on Field Goal Attempts. {Poor_kickers} kickers ({poor_percentage}%) performed below ' \
@@ -35,6 +41,10 @@ def FieldGoalPercentage_Total(data):
 
     # print(poor_percentage, elite_percentage, good_percentage)  # these add up to 100%
     # make a histogram of overall make percentage
+
+def FieldGoalTotal_Outliers(data):
+
+
 
     """This function is responsible for taking the data, finding the average for each of the distances(0-19), (20-29), 
     (30-39), (40-49), and (50+). WWe will graph this data later."""

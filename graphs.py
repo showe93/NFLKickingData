@@ -12,7 +12,6 @@ def kickerSDgraph(data):
     fig = plt.figure(figsize=(15, 10))
     bar_colors = ['tab:red', 'tab:blue', 'tab:green']
     plt.bar(SDcalculations, values, color=bar_colors, width=0.4)
-    plt.xlabel("Kicking Categories")
     plt.ylabel("Number of Kickers")
     plt.title("Kickers Field Goal Percentages Compared to -1 and 1 Standard Deviation")
     plt.savefig("Graphs/TotalFieldGoalSDComparison.jpg")
@@ -39,7 +38,7 @@ def kickerNameTable(data):
     column_header = data.pop(0)
     plt.figure(linewidth=2,
                tight_layout={'pad': 1},
-               figsize=(5, 7),
+               figsize=(6, 7),
                dpi=150
                )
     ccolors = plt.cm.Blues(np.full(len(column_header), 0.1))

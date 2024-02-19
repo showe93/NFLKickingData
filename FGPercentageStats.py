@@ -89,10 +89,10 @@ def NotBeatTheSpread(data, Bottom_bar):
 """This function creates a list of list with all the names for each kickers in each category to be used in a table"""
 
 
-def KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList):
+def KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList, Bottom_bar, Top_bar):
     kickerList = [PoorKickersList, GoodKickersList, EliteKickersList]
     table = [
-        ['Below -1SD', 'Between -1SD and 1SD', 'Above 1SD']
+        [f'Below {Bottom_bar}%(-1SD)', f'Between {Bottom_bar}% and {Top_bar}%', f'Above {Top_bar}%(1SD)']
     ]
     loops = 0
     row = 0
