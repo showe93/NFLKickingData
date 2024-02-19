@@ -32,6 +32,9 @@ def kickersSDgraphPercentage(data):
     plt.savefig("Graphs/TotalFieldGoalPercentages.jpg")
 
 
+"""This function creates a table of kickers name based on the category they fall into"""
+
+
 def kickerNameTable(data):
     column_header = data.pop(0)
     plt.figure(linewidth=2,

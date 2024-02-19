@@ -46,7 +46,8 @@ def SD_Spread(data, FGAvg, StandardDeviation):
         if Bottom_bar <= float(test_value) <= Top_bar:
             KickerCount += 1
             GoodKickersList.append(row[0])
-    percentage = KickerCount / PopulationSize
+    percentage = (KickerCount / PopulationSize) * 100
+    percentage = round(percentage, 2)
     return KickerCount, percentage, Bottom_bar, Top_bar, GoodKickersList
 
 
@@ -65,7 +66,8 @@ def BeatTheSpread(data, Top_bar):
         if float(test_value) >= Top_bar:
             KickerCount += 1
             EliteKickersList.append(row[0])
-    percentage = KickerCount / PopulationSize
+    percentage = (KickerCount / PopulationSize) * 100
+    percentage = round(percentage, 2)
     return KickerCount, percentage, EliteKickersList
 
 
@@ -79,7 +81,8 @@ def NotBeatTheSpread(data, Bottom_bar):
         if float(test_value) <= Bottom_bar:
             KickerCount += 1
             PoorKickersList.append(row[0])
-    percentage = KickerCount / PopulationSize
+    percentage = (KickerCount / PopulationSize) * 100
+    percentage = round(percentage, 2)
     return KickerCount, percentage, PoorKickersList
 
 
