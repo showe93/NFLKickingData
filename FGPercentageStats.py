@@ -2,6 +2,8 @@
 deviation and mean of the data"""
 import math
 
+import numpy as np
+
 """This function will find the average Field Goal Percentage amongst all kickers in the NFL"""
 
 
@@ -130,6 +132,24 @@ def boxPlot(data):
         results.append(float(row[14]))
     return results
 
+
+def BoxplotOutliers(data, boxdata):
+    median = np.median(boxdata)
+    upper_quartile = np.percentile(boxdata, 75)
+    lower_quartile = np.percentile(boxdata, 25)
+    iqr = upper_quartile - lower_quartile
+    minimum = lower_quartile - (1.5 * iqr)
+    maximum = upper_quartile + (1.5 * iqr)
+    if maximum > 100:
+        maximum = 100
+    lower_outliers = []
+    upper_outliers = []
+    for row in data:
+        if float(row[14]) < minimum:
+            lower_outliers.append(row[0])
+        if float(row[14]) > maximum:
+            upper_outliers.append(row[0])
+    return lower_outliers, upper_outliers
 "This function determines field goal percentage for each specific distance using all of the data"
 
 

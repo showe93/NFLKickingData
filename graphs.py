@@ -1,7 +1,7 @@
 """this file contains all functions related to graphing"""
 import matplotlib.pyplot as plt
 import numpy as np
-
+import matplotlib.ticker as mtick
 
 """this function graphs the number of kickers that fall within one standard deviation, fall below one standard 
 deviation, and above one standard deviation."""
@@ -60,5 +60,9 @@ def BoxPlotGraph(boxdata):
     figure = plt.figure(figsize=(7, 7))
     plt.boxplot(boxdata)
     ax = plt.gca()
+    fmt = '%.0f%%'
+    plt.title("Box plot of all field goal percentages with outliers")
+    xticks = mtick.FormatStrFormatter(fmt)
+    ax.yaxis.set_major_formatter(xticks)
     ax.get_xaxis().set_visible(False)
     plt.savefig("Graphs/BoxPlot.jpg")

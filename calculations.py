@@ -45,6 +45,7 @@ def FieldGoalPercentage_Total(data):
 def FieldGoalTotal_Outliers(data):
     boxdata = boxPlot(data)
     BoxPlotGraph(boxdata)
+    BoxplotOutliers(data, boxdata)
 
 
     """This function is responsible for taking the data, finding the average for each of the distances(0-19), (20-29), 
