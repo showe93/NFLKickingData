@@ -9,7 +9,7 @@ def calculations(data):
     FieldGoalPercentage_Total(data)
     """Now we will use box plots to determine if any of the below or above average kickers are outliers when compared
     to the rest of the data"""
-    #insert place holder here
+    FieldGoalTotal_Outliers(data)
     """"This function determines averages for each of the 5 distance ranges. 0-19, 20-29, 30-39, 40-49 and 50+."""
     PercentageMadeByDistance(data)
 
@@ -43,7 +43,8 @@ def FieldGoalPercentage_Total(data):
     # make a histogram of overall make percentage
 
 def FieldGoalTotal_Outliers(data):
-
+    boxdata = boxPlot(data)
+    BoxPlotGraph(boxdata)
 
 
     """This function is responsible for taking the data, finding the average for each of the distances(0-19), (20-29), 

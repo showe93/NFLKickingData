@@ -124,6 +124,12 @@ def KickerPerformanceNameList(PoorKickersList, GoodKickersList, EliteKickersList
     return table
 
 
+def boxPlot(data):
+    results = []
+    for row in data:
+        results.append(float(row[14]))
+    return results
+
 "This function determines field goal percentage for each specific distance using all of the data"
 
 
