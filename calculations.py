@@ -1,6 +1,11 @@
 """This file will perform all calculations"""
 from FGPercentageStats import *
 from graphs import *
+import pdfkit
+
+path_wkhtmltopdf = "C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe"
+config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+
 
 
 def calculations(data):
@@ -39,6 +44,18 @@ def FieldGoalPercentage_Total(data):
                 f'fall in this range.'
     print(statement)
 
+    html = '''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Example</title>
+</head>
+<body>
+    <p>{0}</p>
+</body>
+</html>
+'''
+    pdfkit.from_string(html.format(statement), 'results.pdf', configuration=config)
     # print(poor_percentage, elite_percentage, good_percentage)  # these add up to 100%
     # make a histogram of overall make percentage
 
