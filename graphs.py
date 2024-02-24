@@ -10,10 +10,11 @@ deviation, and above one standard deviation."""
 def kickerSDgraph(data):
     SDcalculations = list(data.keys())
     values = list(data.values())
-    fig = plt.figure(figsize=(10, 5))
+    fig = plt.figure(figsize=(10, 5), dpi=500)
     bar_colors = ['tab:red', 'tab:blue', 'tab:green']
     plt.bar(SDcalculations, values, color=bar_colors, width=0.4)
     plt.ylabel("Number of Kickers")
+    csfont = {'fontname': 'Arial'}
     plt.title("Kickers Field Goal Percentages Compared to -1 and 1 Standard Deviation")
     plt.grid(axis = "y", linestyle="--", color="black")
     plt.savefig("Graphs/TotalFieldGoalSDComparison.jpg")
@@ -26,7 +27,8 @@ deviation, and above one standard deviation."""
 def kickersSDgraphPercentage(data):
     SDcalculations = list(data.keys())
     percentages = list(data.values())
-    fig = plt.figure(figsize=(10, 5))
+    plt.rcParams["font.family"] = "Arial"
+    fig = plt.figure(figsize=(10,5), dpi=500)
     bar_colors = ['tab:red', 'tab:blue', 'tab:green']
     plt.pie(percentages, labels=SDcalculations, autopct='%1.2f%%', colors=bar_colors)
     plt.title("Percentages of Kickers in Each Category Based on SD")
@@ -41,7 +43,7 @@ def kickerNameTable(data):
     plt.figure(linewidth=2,
                tight_layout={'pad': 1},
                figsize=(6, 7),
-               dpi=150
+               dpi=300
                )
     ccolors = plt.cm.Blues(np.full(len(column_header), 0.1))
     table = plt.table(cellText=data, colLabels=column_header, loc='center', colColours=ccolors, cellLoc='center')
