@@ -42,7 +42,6 @@ def FieldGoalPercentage_Total(data):
                 f'Average NFL kicker was successful between {Bottom_bar}% and {Top_bar}% on Field Goal Attempts. {Poor_kickers} kickers ({poor_percentage}%) performed below ' \
                 f'average, well {Elite_kickers} ({elite_percentage}%) kickers performed above average. The remaining {Good_kickers} ({good_percentage}%) kickers ' \
                 f'fall in this range.'
-    print(statement)
 
     html = '''
 <!DOCTYPE html>
@@ -51,10 +50,11 @@ def FieldGoalPercentage_Total(data):
     <title>PDF Example</title>
 </head>
 <body>
-    <p>{0}</p>
+    <p style="font-family:Arial">{0}</p>
 </body>
 </html>
 '''
+
     pdfkit.from_string(html.format(statement), 'results.pdf', configuration=config)
     # print(poor_percentage, elite_percentage, good_percentage)  # these add up to 100%
     # make a histogram of overall make percentage
