@@ -1,30 +1,24 @@
 """This file will perform all calculations"""
 from FGPercentageStats import *
 from graphs import *
-import pdfkit
-import base64
-
-
-path_wkhtmltopdf = "C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe"
-config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
-
 
 
 def calculations(data):
     """ First we will calculate below average,average, and above average kickers. We will use total FG percentage and
     -1 and 1 Standard Deviation to perform this calculation."""
-    FieldGoalPercentage_Total(data)
+    FieldGoalStats = FieldGoalPercentage_Total(data)
     """Now we will use box plots to determine if any of the below or above average kickers are outliers when compared
     to the rest of the data"""
     FieldGoalTotal_Outliers(data)
     """"This function determines averages for each of the 5 distance ranges. 0-19, 20-29, 30-39, 40-49 and 50+."""
     PercentageMadeByDistance(data)
 
-
+    return FieldGoalStats
 """This function is responsible for taking Field Goal Percentage, finding the average, standard deviation, and graphs"""
 
 
 def FieldGoalPercentage_Total(data):
+    kickingStats = []
     FGAvg = FieldGoalAvgTotal(data)
     FGSD = FieldGoalSDTotal(data, FGAvg)
     Good_kickers, good_percentage, Bottom_bar, Top_bar, GoodKickersList = SD_Spread(data, FGAvg, FGSD)
@@ -40,27 +34,8 @@ def FieldGoalPercentage_Total(data):
                       f'Average ({Bottom_bar}% (-1SD) and {Top_bar}% (1SD))': good_percentage,
                       f'Above Average (> {Top_bar}% (1SD))': elite_percentage}
     kickersSDgraphPercentage(PercentageData)
-    statement = f'Across the league, NFL kickers were successful with kicking Field Goals {FGAvg}% of the time. The ' \
-                f'Average NFL kicker was successful between {Bottom_bar}% and {Top_bar}% on Field Goal Attempts. {Poor_kickers} kickers ({poor_percentage}%) performed below ' \
-                f'average, well {Elite_kickers} ({elite_percentage}%) kickers performed above average. The remaining {Good_kickers} ({good_percentage}%) kickers ' \
-                f'fall in this range.'
-    with open("Graphs/TotalFieldGoalPercentages.jpg", "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
-    html = '''
-<!DOCTYPE html>
-<html>
-<head>
-    <title>PDF Example</title>
-</head>
-<body>
-    <p style="font-family:Arial">{0}</p>
-    <img src="data:image/jpg;base64, {1}" style="width:100%;height:500px;">
-</body>
-</html>
-'''
-    pdfkit.from_string(html.format(statement, encoded_string), 'results.pdf', configuration=config)
-    # print(poor_percentage, elite_percentage, good_percentage)  # these add up to 100%
-    # make a histogram of overall make percentage
+    kickingStats.extend((FGAvg, Bottom_bar, Top_bar, Poor_kickers, poor_percentage, Elite_kickers, elite_percentage, Good_kickers, good_percentage))
+    return kickingStats
 
 def FieldGoalTotal_Outliers(data):
     boxdata = boxPlot(data)
