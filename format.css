@@ -25,17 +25,20 @@ hr {
 }
 
 p {
-    text-align: left; /* Ensure paragraph text is left-aligned */
+    text-align: left;
     margin: 20px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 img {
     width: 100%;
-    height: 500px;
     object-fit: cover;
 }
 
 .page-break {
-    page-break-before: always; /* Insert a page break before this element when printing */
+    page-break-before: always;
 }
+
+.footer {
+    text-align: center;
+    }

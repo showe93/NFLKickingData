@@ -27,7 +27,7 @@ deviation, and above one standard deviation."""
 def kickersSDgraphPercentage(data):
     SDcalculations = list(data.keys())
     percentages = list(data.values())
-    plt.rcParams["font.family"] = "Arial"
+    plt.rcParams["font.family"] = "sans-serif"
     fig = plt.figure(figsize=(10,5), dpi=500)
     bar_colors = ['tab:red', 'tab:blue', 'tab:green']
     plt.pie(percentages, labels=SDcalculations, autopct='%1.2f%%', colors=bar_colors)
@@ -52,7 +52,7 @@ def kickerNameTable(data):
     ax.get_yaxis().set_visible(False)
     table.scale(1, 1.3)
     table.auto_set_font_size(False)
-    table.set_fontsize(8)
+    table.set_fontsize(7)
     plt.box(on=None)
     plt.savefig("Graphs/KickerNamesTotalFieldGoal.jpg", bbox_inches="tight")
 
@@ -60,6 +60,7 @@ def kickerNameTable(data):
 
 def BoxPlotGraph(boxdata):
     figure = plt.figure(figsize=(7, 7))
+    plt.rcParams["font.family"] = "sans-serif"
     plt.boxplot(boxdata)
     ax = plt.gca()
     fmt = '%.0f%%'
